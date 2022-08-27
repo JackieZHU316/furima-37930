@@ -39,7 +39,7 @@ Things you may want to cover:
 | first_name         | string | null: false               |
 | last_name_kana     | string | null: false               |
 | first_name_kana    | string | null: false               |
-| birthday_date      | string | null: false               |
+| birthday_date      | date   | null: false               |
 
 ### Association
 
@@ -89,7 +89,7 @@ Things you may want to cover:
 | Column         | Type       | Options                        |
 | ---------      | ---------- | ------------------------------ |
 | post_code      | string     | null: false                    |
-| region_id      |            | null: false                    |
+| region_id      | integer    | null: false                    |
 | city           | string     | null: false                    |
 | house_number   | string     | null: false                    |
 | building       | string     |                                |
