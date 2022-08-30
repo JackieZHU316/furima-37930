@@ -6,8 +6,7 @@ class User < ApplicationRecord
   ZENKAKU_REGEXP = /\A[ぁ-んァ-ン一-龥]/
   ZENKAKU_KATAKANA_REGEXP = /[\p{katakana}ー－&&[^ -~｡-ﾟ]]+/
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -22,5 +21,4 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :purchases
-
 end
