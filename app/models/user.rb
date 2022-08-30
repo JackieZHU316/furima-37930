@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   # 全角ひらがな、全角カタカナ、漢字
-  ZENKAKU_REGEXP = /\A[ぁ-んァ-ン一-龥]/
+  ZENKAKU_REGEXP = /\A[ぁ-んァ-ヶ一-龥々ー]/
   ZENKAKU_KATAKANA_REGEXP = /[\p{katakana}ー－&&[^ -~｡-ﾟ]]+/
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
@@ -19,6 +19,6 @@ class User < ApplicationRecord
   validates :birthday_date, presence: true
   validates :password, format: { with: VALID_PASSWORD_REGEX }
 
-  has_many :items
-  has_many :purchases
+  # has_many :items
+  # has_many :purchases
 end
