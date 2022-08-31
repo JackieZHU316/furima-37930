@@ -18,12 +18,11 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it 'emailが重複になると登録できない' do
-        user = User.new(nickname: 'tommy', email: 'test@example', password: 'aaa222', password_confirmation: 'aaa222',
-                        first_name: '一郎', last_name: '山上', first_name_kana: 'イチロウ', last_name_kana: 'ヤマカミ', birthday_date: '1931-01-01 00:00:00')
-        registed_user = FactoryBot.build(:user)
-        registed_user.save
-        user.valid?
-        expect(user.errors.full_messages).to include('Email has already been taken')
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'emailで@がないと登録できない' do
         @user.email = 'testexample'
