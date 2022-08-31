@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   # 全角ひらがな、全角カタカナ、漢字
   ZENKAKU_REGEXP = /\A[ぁ-んァ-ヶ一-龥々ー]/
-  ZENKAKU_KATAKANA_REGEXP = /[\p{katakana}ー－&&[^ -~｡-ﾟ]]+/
+  ZENKAKU_KATAKANA_REGEXP = /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
 
