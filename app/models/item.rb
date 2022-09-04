@@ -14,7 +14,7 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-  belongs_to :statu
+  belongs_to :status
   belongs_to :charge_type
   belongs_to :region
   belongs_to :delivery_time
