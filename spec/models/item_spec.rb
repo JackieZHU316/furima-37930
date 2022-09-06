@@ -8,7 +8,6 @@ RSpec.describe Item, type: :model do
   describe '商品出品新規登録' do
     context '商品出品登録できるとき' do
       it '商品画像、商品名、商品の説明、商品ののカテゴリー、商品の状態、配送料の負担、発送元の地域、発送までの日数、販売価格が存在すれば登録できる' do
-        @item.image = fixture_file_upload('test.jpeg')
         expect(@item).to be_valid
       end
     end
@@ -23,27 +22,32 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Introduction can't be blank")
       end
-      it '商品のカテゴリーが空だと登録できない' do
-        @item.category_id = ''
+      it '商品のカテゴリーが「---」だと登録できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it '商品の状態が空だと登録できない' do
-        @item.status_id = ''
+      it '商品の状態が「---」だと登録できない' do
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
-      it '商品の発送元の地域が空だと登録できない' do
-        @item.charge_type_id = ''
+      it '商品の配送料の負担が「---」だと登録できない' do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be blank")
+      end
+      it '商品の発送元の地域が「---」だと登録できない' do
+        @item.charge_type_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Charge type can't be blank")
       end
-      it '商品の発送までの日数が空だと登録できない' do
-        @item.delivery_time_id = ''
+      it '商品の発送までの日数が「---」だと登録できない' do
+        @item.delivery_time_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery time can't be blank")
       end
-      it '商品の価格が空だと登録できない' do
+      it '商品の価格がだと登録できない' do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
@@ -72,6 +76,12 @@ RSpec.describe Item, type: :model do
         @item.price = '１０００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'userが紐付いていなければ保存できない' do
+        @item.user = nil
+        @item.valid?
+        binding.pry
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end

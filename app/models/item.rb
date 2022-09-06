@@ -12,8 +12,7 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: HANKAKU_NUMBER_REGEXP }
   validates :image, presence: true
 
-
-  # belongs_to :user
+  belongs_to :user
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
