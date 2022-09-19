@@ -12,6 +12,8 @@ class PurchaseContact
   end
   validates :region_id, numericality: {other_than: 1, message: "can't be blank"}
 
-
+  def save
+    # 各テーブルにデータを保存する処理を書く
+  end
 
 end
