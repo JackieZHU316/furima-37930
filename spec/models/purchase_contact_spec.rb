@@ -22,22 +22,22 @@ RSpec.describe PurchaseContact, type: :model do
       it '郵便番号がハイフンを持ってないと保存できないこと' do
         @purchase_contact.post_code = '3321110'
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号が「2桁ハイフン4桁」だと保存できないこと' do
         @purchase_contact.post_code = '33-1110'
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号が「3桁ハイフン3桁」だと保存できないこと' do
         @purchase_contact.post_code = '333-111'
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号が全角文字列だと保存できないこと' do
         @purchase_contact.post_code = '３３３-１１１０'
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '都道府県が空だと保存できないこと' do
         @purchase_contact.region_id = 1
@@ -60,24 +60,24 @@ RSpec.describe PurchaseContact, type: :model do
         expect(@purchase_contact.errors.full_messages).to include("Phone number can't be blank")
       end
       it '電話番号が9桁の半角数値だと保存できないこと' do
-        @purchase_contact.phone_number = 123456789
+        @purchase_contact.phone_number = 123_456_789
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Phone number is invalid. You cannot include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Phone number is invalid. You cannot include hyphen(-)')
       end
       it '電話番号が12桁の半角数値だと保存できないこと' do
-        @purchase_contact.phone_number = 123456789012
+        @purchase_contact.phone_number = 123_456_789_012
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Phone number is invalid. You cannot include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Phone number is invalid. You cannot include hyphen(-)')
       end
       it '電話番号が10桁以上11桁以内の全角数値だと保存できないこと' do
         @purchase_contact.phone_number = '１２３４５６７８９０１'
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Phone number is invalid. You cannot include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Phone number is invalid. You cannot include hyphen(-)')
       end
       it '電話番号がハイフンを付けると保存できないこと' do
         @purchase_contact.phone_number = '080-1234-5678'
         @purchase_contact.valid?
-        expect(@purchase_contact.errors.full_messages).to include("Phone number is invalid. You cannot include hyphen(-)")
+        expect(@purchase_contact.errors.full_messages).to include('Phone number is invalid. You cannot include hyphen(-)')
       end
     end
   end

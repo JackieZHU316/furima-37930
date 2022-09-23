@@ -21,18 +21,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item_purchased = false 
+    @item_purchased = false
   end
 
   def edit
     redirect_to root_path if current_user.id != @item.user.id
 
     @purchases.each do |purchase|
-      if @item.id == purchase.item_id
-        redirect_to root_path
-      end
+      redirect_to root_path if @item.id == purchase.item_id
     end
-    
   end
 
   def update
@@ -59,8 +56,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_purchases 
+  def set_purchases
     @purchases = Purchase.all
   end
-
 end
