@@ -1,6 +1,6 @@
 class PurchaseContact
   include ActiveModel::Model
-  attr_accessor :post_code, :region_id, :city, :house_number, :building, :phone_number, :user_id, :item_id
+  attr_accessor :post_code, :region_id, :city, :house_number, :building, :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :post_code, format: {with: /\A[0-9]{3}+-+[0-9]{4}+\z/, message: "is invalid. Include hyphen(-)"}
@@ -10,6 +10,7 @@ class PurchaseContact
     validates :user_id
   end
   validates :region_id, numericality: {other_than: 1, message: "can't be blank"}
+  validates :token, presence: true
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: @item_id)
