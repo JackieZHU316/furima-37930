@@ -28,17 +28,13 @@
       </span>
     </div>
 
-      <% if user_signed_in? %>
+      <% if user_signed_in? && @item_purchased == false %>
         <% if current_user.id == @item.user.id %>
-          <% if @item_purchased == false %>
             <%= link_to "商品の編集", "/items/#{@item.id}/edit", method: :get, class: "item-red-btn" %>
             <%= link_to "削除", "/items/#{@item.id}", method: :delete, class:"item-destroy" %>
-          <% end %>
         <% else %>
-          <% if @item_purchased == false %>
             <%= link_to "購入画面に進む", "/items/#{@item.id}/purchases" ,class:"item-red-btn"%>
           <% end %>
-        <% end %>
       <% end %>
 
     <div class="item-explain-box">
