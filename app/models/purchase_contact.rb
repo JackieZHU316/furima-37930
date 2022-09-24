@@ -8,9 +8,11 @@ class PurchaseContact
     validates :house_number
     validates :phone_number, format: { with: /\A[0-9]{10,11}+\z/, message: 'is invalid. You cannot include hyphen(-)' }
     validates :user_id
+    validates :item_id
+    validates :token  
   end
   validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :token, presence: true
+
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: @item_id)

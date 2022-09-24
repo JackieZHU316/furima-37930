@@ -1,14 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseContact, type: :model do
-  describe '商品購入機能_商品配送先登録' do
+  describe '商品購入機能' do
     before do
       user = FactoryBot.create(:user)
-      @purchase_contact = FactoryBot.build(:purchase_contact, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @purchase_contact = FactoryBot.build(:purchase_contact, user_id: user.id, item_id: item.id)
+
     end
 
     context '商品配送先登録できるとき' do
       it 'すべての値が正しく入力されていれば保存できること' do
+        expect(@purchase_contact).to be_valid
+      end
+      it '建物名を入力しなくても保存できること' do
+        @purchase_contact.building = ''
         expect(@purchase_contact).to be_valid
       end
     end
@@ -80,5 +86,30 @@ RSpec.describe PurchaseContact, type: :model do
         expect(@purchase_contact.errors.full_messages).to include('Phone number is invalid. You cannot include hyphen(-)')
       end
     end
+
+    context 'クレジットカード決済できるとき' do
+      it 'すべて必要な情報があれば保存ができること' do
+        expect(@purchase_contact).to be_valid
+      end
+    end
+
+    context 'クレジットカード決済できないとき' do
+      it 'userが紐付いていなければ保存できないこと' do
+        @purchase_contact.user_id = nil
+        @purchase_contact.valid?
+        expect(@purchase_contact.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ保存できないこと' do
+        @purchase_contact.item_id = nil
+        @purchase_contact.valid?
+        expect(@purchase_contact.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'tokenが空では保存できないこと' do
+        @purchase_contact.token = nil
+        @purchase_contact.valid?
+        expect(@purchase_contact.errors.full_messages).to include("Token can't be blank")
+      end
+    end
+
   end
 end
