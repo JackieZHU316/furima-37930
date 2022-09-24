@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item_purchased = false
   end
 
   def edit

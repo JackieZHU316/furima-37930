@@ -14,7 +14,6 @@
           <div class="sold-out">
             <span>Sold Out!!</span>
           </div>
-          <% @item_purchased = true %>
         <% end %>
       <% end %>
     </div>
@@ -28,7 +27,7 @@
       </span>
     </div>
 
-      <% if user_signed_in? && @item_purchased == false %>
+      <% if user_signed_in? && @item.purchase.blank? %>
         <% if current_user.id == @item.user.id %>
             <%= link_to "商品の編集", "/items/#{@item.id}/edit", method: :get, class: "item-red-btn" %>
             <%= link_to "削除", "/items/#{@item.id}", method: :delete, class:"item-destroy" %>
