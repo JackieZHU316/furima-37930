@@ -7,6 +7,6 @@ FactoryBot.define do
     building      { 'Super House' }
     phone_number  { '08012345678' }
     token         { 'tok_abcdefghijk00000000000000000' }
-    item_id       {2}
+    item_id       { 2 }
   end
 end
