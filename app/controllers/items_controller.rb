@@ -24,10 +24,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path if current_user.id != @item.user.id
-
-    @purchases.each do |purchase|
-      redirect_to root_path if @item.id == purchase.item_id
+    if (current_user.id != @item.user.id)
+      redirect_to root_path
+    else
+      @purchases.each do |purchase|
+        redirect_to root_path if @item.id == purchase.item_id
+      end
     end
   end
 
