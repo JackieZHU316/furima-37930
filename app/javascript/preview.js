@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', function(){
   fileField.addEventListener('change', function(e){
     const file = e.target.files[0];
     const blob = window.URL.createObjectURL(file);
-    console.log(blob);
     const previewWrapper = document.createElement('div');
     previewWrapper.setAttribute('class', 'preview');
     const previewImage = document.createElement('img');
     previewImage.setAttribute('class', 'preview-image');
+    previewImage.setAttribute('src', blob);
   });
 });
