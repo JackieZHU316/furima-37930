@@ -45,6 +45,7 @@ Things you may want to cover:
 
 - has_many :items
 - has_many :purchases
+- has_many :comments
 
 <!-- ******************************************************* -->
 
@@ -66,6 +67,7 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_one :purchase
+- has_many :comments
 
 <!-- ******************************************************* -->
 
@@ -99,5 +101,20 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :purchase
+
+<!-- ******************************************************* -->
+
+## comments テーブル
+
+| Column         | Type       | Options                        |
+| ---------      | ---------- | ------------------------------ |
+| message        | text       | null: false                    |
+| user           | references | null: false, foreign_key: true |
+| item           | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
 
 <!-- ******************************************************* -->
