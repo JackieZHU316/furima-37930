@@ -20,4 +20,7 @@ class Item < ApplicationRecord
   belongs_to :charge_type
   belongs_to :region
   belongs_to :delivery_time
+
+  has_many :comments, dependent: :destroy
+
 end

@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.item-box>.name {
+.item-box>.name, .comments-all {
   text-align: center;
   font-weight: bold;
   font-size: 25px;
